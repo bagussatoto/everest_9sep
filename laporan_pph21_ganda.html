@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Analisis Penyetoran Ganda PPh 21 (Kode 1483)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --success-bg: #ecfdf5;
+            --success-text: #065f46;
+            --success-border: #a7f3d0;
+            --success-badge: #10b981;
+            --danger-bg: #fef2f2;
+            --danger-text: #991b1b;
+            --danger-border: #fecaca;
+            --danger-badge: #ef4444;
+            --warning-bg: #fffbeb;
+            --warning-text: #92400e;
+            --warning-border: #fde68a;
+            --warning-badge: #f59e0b;
+            --radius: 12px;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.07);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8fafc;
+            color: var(--slate-800);
+            line-height: 1.5;
+            padding: 28px 24px;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* Top Header */
+        .header-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: var(--radius);
+            padding: 32px;
+            color: #ffffff;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .header-card::after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, rgba(37,99,235,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37, 99, 235, 0.35);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #bfdbfe;
+            margin-bottom: 14px;
+        }
+
+        .header-title {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        .header-desc {
+            color: #cbd5e1;
+            font-size: 14px;
+            max-width: 900px;
+            line-height: 1.6;
+        }
+
+        .header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .header-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-meta-item strong {
+            color: #f1f5f9;
+        }
+
+        /* Metrics KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kpi-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--slate-500);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .kpi-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--slate-900);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .kpi-value.danger {
+            color: #dc2626;
+        }
+
+        .kpi-value.success {
+            color: #059669;
+        }
+
+        .kpi-value.primary {
+            color: var(--primary);
+        }
+
+        .kpi-sub {
+            font-size: 12px;
+            color: var(--slate-500);
+            line-height: 1.4;
+        }
+
+        /* Timeline & Comparison Section */
+        .section-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--slate-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--slate-900);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-danger {
+            background-color: var(--danger-bg);
+            color: var(--danger-text);
+            border: 1px solid var(--danger-border);
+        }
+
+        .badge-success {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
+        }
+
+        .badge-warning {
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            border: 1px solid var(--warning-border);
+        }
+
+        .badge-secondary {
+            background-color: var(--slate-100);
+            color: var(--slate-700);
+            border: 1px solid var(--slate-200);
+        }
+
+        /* Comparison Side by Side */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 24px;
+            background: var(--slate-50);
+        }
+
+        .compare-box {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 22px;
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .compare-box.batal {
+            border-left: 5px solid #ef4444;
+        }
+
+        .compare-box.aktif {
+            border-left: 5px solid #10b981;
+        }
+
+        .compare-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--slate-100);
+        }
+
+        .compare-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--slate-900);
+        }
+
+        .compare-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 13px;
+            border-bottom: 1px dashed var(--slate-100);
+        }
+
+        .compare-label {
+            color: var(--slate-500);
+            font-weight: 500;
+        }
+
+        .compare-val {
+            font-weight: 600;
+            color: var(--slate-800);
+            text-align: right;
+        }
+
+        /* Audit Timeline callout */
+        .audit-alert {
+            margin: 20px 24px;
+            padding: 18px 22px;
+            border-radius: 10px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .audit-alert-icon {
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        .audit-alert-content h4 {
+            color: #166534;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .audit-alert-content p {
+            color: #14532d;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Filter and Search Bar */
+        .table-controls {
+            padding: 16px 24px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--slate-200);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 8px;
+            background: var(--slate-100);
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--slate-600);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 9px 14px 9px 38px;
+            font-size: 13px;
+            border: 1px solid var(--slate-300);
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.15s;
+            background: #ffffff;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--slate-400);
+            font-size: 14px;
+        }
+
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid var(--slate-300);
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--slate-700);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .print-btn:hover {
+            background: var(--slate-50);
+            border-color: var(--slate-400);
+        }
+
+        /* Modern Data Table */
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        table.data-table th {
+            background: var(--slate-50);
+            color: var(--slate-700);
+            font-weight: 700;
+            padding: 13px 16px;
+            border-bottom: 2px solid var(--slate-200);
+            white-space: nowrap;
+        }
+
+        table.data-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--slate-200);
+            color: var(--slate-800);
+            vertical-align: middle;
+        }
+
+        table.data-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .item-code {
+            font-family: 'JetBrains Mono', Consolas, monospace;
+            font-weight: 700;
+            color: var(--primary-dark);
+            background: var(--primary-light);
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+            border: 1px solid #dbeafe;
+        }
+
+        .ref-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--slate-500);
+            background: var(--slate-100);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+            border: 1px solid var(--slate-200);
+        }
+
+        .party-name {
+            font-weight: 600;
+            color: var(--slate-900);
+        }
+
+        .amount {
+            font-family: 'JetBrains Mono', Consolas, monospace;
+            font-weight: 600;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .amount-tax {
+            color: #b91c1c;
+            font-weight: 700;
+        }
+
+        /* Table Footer */
+        table.data-table tfoot td {
+            background: var(--slate-100);
+            font-weight: 700;
+            padding: 14px 16px;
+            border-top: 2px solid var(--slate-300);
+        }
+
+        /* Explanation Box */
+        .info-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            border: 1px solid var(--slate-200);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-card ol {
+            padding-left: 20px;
+            color: var(--slate-600);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .info-card li {
+            margin-bottom: 10px;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+            .header-card {
+                box-shadow: none;
+                background: #1e293b !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .table-controls, .print-btn {
+                display: none;
+            }
+            .section-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .table-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-box {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Top Header -->
+    <div class="header-card">
+        <div class="header-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Audit & Investigasi Transaksi Everest
+        </div>
+        <h1 class="header-title">Laporan Analisis Penyetoran Ganda PPh 21 (Kode 1483)</h1>
+        <p class="header-desc">
+            Pemeriksaan menyeluruh riwayat penyetoran PPh Pasal 21 A/P Payment (Kode Transaksi <strong>1483</strong>) periode <strong>01 Januari 2026 s/d 15 September 2026</strong>. 
+            Laporan ini menyajikan perbandingan lengkap status dokumen <strong>Penyetoran Ke-1</strong> vs <strong>Penyetoran Ke-2</strong>, identitas petugas, waktu pembatalan, serta rincian seluruh 17 sumber transaksi yang tercatat ganda.
+        </p>
+        <div class="header-meta">
+            <div class="header-meta-item">
+                <span>URL Referensi:</span>
+                <strong><a href="https://demo.mayagrahakencana.com/everest_9sep/pembayaran/History/viewHistory/1483/?date1=2026-01-01&date2=2026-09-15" target="_blank" style="color:#93c5fd; text-decoration: underline;">viewHistory/1483/?date1=2026-01-01&date2=2026-09-15</a></strong>
+            </div>
+            <div class="header-meta-item">
+                <span>Database:</span>
+                <strong>run_everest_modul (192.168.5.10)</strong>
+            </div>
+            <div class="header-meta-item">
+                <span>Waktu Audit:</span>
+                <strong>15/09/2026 08:27:51 WIB</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-title">
+                <span>Item Tercatat Ganda</span>
+                <span class="badge badge-danger">17 Item</span>
+            </div>
+            <div class="kpi-value danger">17 <span style="font-size:16px; font-weight:500; color:var(--slate-500);">Item</span></div>
+            <div class="kpi-sub">+ 1 Item revisi nomor referensi (total 18 item)</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-title">
+                <span>Total PPh 21 Terduplikasi</span>
+                <span class="badge badge-warning">Tergolong Ganda</span>
+            </div>
+            <div class="kpi-value primary">Rp 1.140.148,36</div>
+            <div class="kpi-sub">Total PPh 21 dari ke-17 item sumber transaksi</div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-title">
+                <span>Penyetoran Ke-1 (1483.-1.147)</span>
+                <span class="badge badge-danger">BATAL / CANCELED</span>
+            </div>
+            <div class="kpi-value" style="color: #ef4444;">Rp 1.351.423,36</div>
+            <div class="kpi-sub">Dibatalkan 17/03/2026 15:55 oleh <strong>indah</strong></div>
+        </div>
+
+        <div class="kpi-card">
+            <div class="kpi-title">
+                <span>Penyetoran Ke-2 (1483.-1.149)</span>
+                <span class="badge badge-success">AKTIF / LUNAS</span>
+            </div>
+            <div class="kpi-value success">Rp 4.605.058,36</div>
+            <div class="kpi-sub">Dibuat 17/03/2026 16:05 oleh <strong>indah</strong> (22 items)</div>
+        </div>
+    </div>
+
+    <!-- Audit Conclusion Alert -->
+    <div class="audit-alert">
+        <div class="audit-alert-icon">💡</div>
+        <div class="audit-alert-content">
+            <h4>Kesimpulan Audit Kas Negara: TIDAK ADA PEMBAYARAN KAS NEGARA GANDA</h4>
+            <p>
+                Meskipun di menu <em>viewHistory/1483</em> terlihat item-item muncul 2 kali, 
+                <strong>Penyetoran Ke-1 (No. 1483.-1.147) telah DIBATALKAN (Status: trash_4 = 1) pada tanggal 17/03/2026 pukul 15:55:49</strong>. 
+                Sembilan menit kemudian (pukul 16:05:28), operator menerbitkan <strong>Penyetoran Ke-2 (No. 1483.-1.149, Status: AKTIF)</strong> sebagai revisi resmi dengan penambahan 4 tagihan baru. 
+                Sehingga secara kas dan akuntansi, <strong>hanya Penyetoran Ke-2 yang sah dan berlaku</strong>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Side by Side Document Comparison -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+                Perbandingan Status Dokumen Penyetoran
+            </div>
+            <div>
+                <span class="badge badge-secondary">Rentang Periode: 2026-01-01 s/d 2026-09-15</span>
+            </div>
+        </div>
+        <div class="comparison-grid">
+            <!-- Box Penyetoran Ke-1 -->
+            <div class="compare-box batal">
+                <div class="compare-header">
+                    <div>
+                        <div class="compare-title">Penyetoran Ke-1 (Lama)</div>
+                        <div style="font-size:12px; color:var(--slate-500);">Dokumen yang Dibatalkan</div>
+                    </div>
+                    <span class="badge badge-danger">BATAL / CANCELED</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Nomor Transaksi</span>
+                    <span class="compare-val"><span class="item-code" style="color:#b91c1c; background:#fee2e2; border-color:#fca5a5;">1483.-1.147</span> (ID: 722455)</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Tanggal Pembuatan</span>
+                    <span class="compare-val">09 Maret 2026, 15:46:45 WIB</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Petugas Pembuat</span>
+                    <span class="compare-val"><strong>indah</strong></span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Keterangan Dokumen</span>
+                    <span class="compare-val">PPH 21 MASSA FEB 2026</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Waktu Pembatalan</span>
+                    <span class="compare-val" style="color:#dc2626; font-weight:700;">17 Maret 2026, 15:55:49 WIB</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Dibatalkan Oleh</span>
+                    <span class="compare-val"><strong>indah</strong> (Petugas yang sama)</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Jumlah Total Item</span>
+                    <span class="compare-val">18 Item Sumber</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Total Nilai Penyetoran</span>
+                    <span class="compare-val amount" style="color:#dc2626; font-size:14px;">Rp 1.351.423,36</span>
+                </div>
+                <div class="compare-row" style="border:none;">
+                    <span class="compare-label">Status di Database</span>
+                    <span class="compare-val"><code style="background:#f1f5f9; padding:2px 6px; border-radius:4px;">trash_4 = 1 (BATAL)</code></span>
+                </div>
+            </div>
+
+            <!-- Box Penyetoran Ke-2 -->
+            <div class="compare-box aktif">
+                <div class="compare-header">
+                    <div>
+                        <div class="compare-title">Penyetoran Ke-2 (Baru / Sah)</div>
+                        <div style="font-size:12px; color:var(--slate-500);">Dokumen Pengganti yang Aktif</div>
+                    </div>
+                    <span class="badge badge-success">AKTIF / LUNAS</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Nomor Transaksi</span>
+                    <span class="compare-val"><span class="item-code" style="color:#047857; background:#d1fae5; border-color:#6ee7b7;">1483.-1.149</span> (ID: 729146)</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Tanggal Pembuatan</span>
+                    <span class="compare-val">17 Maret 2026, 16:05:28 WIB</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Petugas Pembuat</span>
+                    <span class="compare-val"><strong>indah</strong></span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Keterangan Dokumen</span>
+                    <span class="compare-val">PPH 21 MASSA FEB 2026 (TF 12/3)</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Selisih Waktu dari Batal</span>
+                    <span class="compare-val" style="color:#059669; font-weight:700;">+ 9 Menit 39 Detik (Langsung diganti)</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Status Pembatalan</span>
+                    <span class="compare-val" style="color:#059669;">Tidak Dibatalkan (Aktif)</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Jumlah Total Item</span>
+                    <span class="compare-val">22 Item Sumber (17 lama + 1 revisi + 4 baru)</span>
+                </div>
+                <div class="compare-row">
+                    <span class="compare-label">Total Nilai Penyetoran</span>
+                    <span class="compare-val amount" style="color:#059669; font-size:14px;">Rp 4.605.058,36</span>
+                </div>
+                <div class="compare-row" style="border:none;">
+                    <span class="compare-label">Status di Database</span>
+                    <span class="compare-val"><code style="background:#f1f5f9; padding:2px 6px; border-radius:4px;">trash_4 = 0 (AKTIF)</code></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Tables Container -->
+    <div class="section-card">
+        <div class="table-controls">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('dup', this)">17 Item Ganda (17)</button>
+                <button class="tab-btn" onclick="switchTab('rev', this)">1 Item Revisi Referensi (1)</button>
+                <button class="tab-btn" onclick="switchTab('new', this)">4 Item Tambahan di Setoran 2 (4)</button>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari nomor item, pihak, atau RefID...">
+                </div>
+                <button class="print-btn" onclick="window.print()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    Cetak / PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1: 17 ITEM GANDA -->
+        <div id="tab-dup" class="tab-content">
+            <div class="table-wrapper">
+                <table class="data-table" id="dupTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px; text-align: center;">#</th>
+                            <th>Nomor Sumber Transaksi</th>
+                            <th>Pihak / Wajib Pajak</th>
+                            <th style="text-align: right;">Dasar Pajak (DPP)</th>
+                            <th style="text-align: right;">PPh 21 Tagihan</th>
+                            <th>Penyetoran Ke-1 (Lama)</th>
+                            <th>Penyetoran Ke-2 (Baru)</th>
+                            <th style="text-align: center;">Status Verifikasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">1</td>
+                            <td>
+                                <span class="item-code">3675.-1.49</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 694131</span>
+                            </td>
+                            <td>
+                                <span class="party-name">BAROJI</span>
+                            </td>
+                            <td class="amount">Rp 0,00</td>
+                            <td class="amount amount-tax">Rp 334.409,38</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 334.409,38</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 334.409,38</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">2</td>
+                            <td>
+                                <span class="item-code">16677.-1.3788.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 701014</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 724.000,00</td>
+                            <td class="amount amount-tax">Rp 18.100,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 18.100,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 18.100,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">3</td>
+                            <td>
+                                <span class="item-code">16677.-1.2189.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 701023</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 1.208.824,62</td>
+                            <td class="amount amount-tax">Rp 30.220,62</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 30.220,62</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 30.220,62</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">4</td>
+                            <td>
+                                <span class="item-code">16677.-1.3828.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 701038</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 3.904.367,18</td>
+                            <td class="amount amount-tax">Rp 97.609,18</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 97.609,18</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 97.609,18</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">5</td>
+                            <td>
+                                <span class="item-code">16677.-1.3361.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 701428</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 3.220.000,00</td>
+                            <td class="amount amount-tax">Rp 80.500,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 80.500,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 80.500,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">6</td>
+                            <td>
+                                <span class="item-code">16677.-1.3870.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 701450</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 5.811.367,18</td>
+                            <td class="amount amount-tax">Rp 145.284,18</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 145.284,18</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 145.284,18</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">7</td>
+                            <td>
+                                <span class="item-code">16677.-1.3614.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 701474</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 1.600.000,00</td>
+                            <td class="amount amount-tax">Rp 40.000,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 40.000,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 40.000,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">8</td>
+                            <td>
+                                <span class="item-code">16677.-1.833.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 701486</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 1.000.000,00</td>
+                            <td class="amount amount-tax">Rp 25.000,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 25.000,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 25.000,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">9</td>
+                            <td>
+                                <span class="item-code">462.-1.242.2</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 702255</span>
+                            </td>
+                            <td>
+                                <span class="party-name">AGUS SULAIMAN EFFENDI</span>
+                            </td>
+                            <td class="amount">Rp 6.000.000,00</td>
+                            <td class="amount amount-tax">Rp 150.000,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 150.000,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 150.000,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">10</td>
+                            <td>
+                                <span class="item-code">477.-1.321</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 706764</span>
+                            </td>
+                            <td>
+                                <span class="party-name">PAIRIN</span>
+                            </td>
+                            <td class="amount">Rp 2.500.000,00</td>
+                            <td class="amount amount-tax">Rp 62.500,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 62.500,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 62.500,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">11</td>
+                            <td>
+                                <span class="item-code">16677.-1.3905.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 709967</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 495.000,00</td>
+                            <td class="amount amount-tax">Rp 12.375,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 12.375,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 12.375,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">12</td>
+                            <td>
+                                <span class="item-code">16677.-1.3858.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 715375</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 847.000,00</td>
+                            <td class="amount amount-tax">Rp 21.175,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 21.175,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 21.175,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">13</td>
+                            <td>
+                                <span class="item-code">16677.-1.3935.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 715509</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 168.000,00</td>
+                            <td class="amount amount-tax">Rp 4.200,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 4.200,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 4.200,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">14</td>
+                            <td>
+                                <span class="item-code">16677.-1.3873.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 715357</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 507.000,00</td>
+                            <td class="amount amount-tax">Rp 12.675,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 12.675,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 12.675,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">15</td>
+                            <td>
+                                <span class="item-code">16677.-1.674.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 715433</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 2.995.000,00</td>
+                            <td class="amount amount-tax">Rp 74.875,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 74.875,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 74.875,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">16</td>
+                            <td>
+                                <span class="item-code">16677.-1.402.3</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 715397</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 939.000,00</td>
+                            <td class="amount amount-tax">Rp 23.475,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 23.475,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 23.475,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                                <tr class="data-row">
+                            <td style="text-align: center; color:var(--slate-400);">17</td>
+                            <td>
+                                <span class="item-code">16677.-1.3934.1</span>
+                                <span class="ref-badge" title="ID Transaksi Sumber">Ref: 715465</span>
+                            </td>
+                            <td>
+                                <span class="party-name">FREELANCER</span>
+                            </td>
+                            <td class="amount">Rp 310.000,00</td>
+                            <td class="amount amount-tax">Rp 7.750,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">09/03/2026 &bull; Rp 7.750,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-danger">BATAL (17/03/2026)</span></div>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 &bull; Rp 7.750,00</div>
+                                <div style="margin-top:2px;"><span class="badge badge-success">AKTIF (SAH)</span></div>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success" title="Item telah disetor secara sah pada Penyetoran Ke-2">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                                            </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">TOTAL 17 ITEM GANDA:</td>
+                            <td class="amount" style="font-weight: 700;">Rp 32.229.558,97</td>
+                            <td class="amount amount-tax" style="font-size: 14px;">Rp 1.140.148,36</td>
+                            <td style="color:#b91c1c; font-weight:700;">Total Terbatal: Rp 1.140.148,36</td>
+                            <td style="color:#047857; font-weight:700;">Total Aktif: Rp 1.140.148,36</td>
+                            <td style="text-align: center; color:var(--success-text); font-weight:700;">LUNAS (1X)</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 2: 1 ITEM REVISI REFERENSI -->
+        <div id="tab-rev" class="tab-content" style="display: none;">
+            <div style="padding: 20px 24px; background:#fffbeb; border-bottom: 1px solid #fde68a;">
+                <strong style="color:#92400e;">Informasi Revisi Nomor Referensi:</strong>
+                <p style="font-size:13px; color:#b45309; margin-top:4px;">
+                    Item ini pada dasarnya adalah transaksi yang sama (dengan nomor pokok <code>16677.-1.269</code>), 
+                    namun pada saat Penyetoran Ke-1 menggunakan referensi revisi <code>.2</code> (RefID: 705763), kemudian pada Penyetoran Ke-2 direvisi menjadi referensi revisi <code>.3</code> (RefID: 728377). Nilai pajak PPh 21 persis sama sebesar Rp 211.275,00.
+                </p>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nomor Dokumen Awal</th>
+                            <th>Nomor Dokumen Revisi</th>
+                            <th>Pihak / Wajib Pajak</th>
+                            <th style="text-align: right;">Dasar Pengenaan Pajak (DPP)</th>
+                            <th style="text-align: right;">PPh 21 Tagihan</th>
+                            <th>Penyetoran Ke-1 (1483.-1.147)</th>
+                            <th>Penyetoran Ke-2 (1483.-1.149)</th>
+                            <th style="text-align: center;">Status Akhir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="item-code" style="color:#b91c1c; background:#fee2e2; border-color:#fca5a5;">16677.-1.269.2</span>
+                                <span class="ref-badge">Ref: 705763</span>
+                            </td>
+                            <td>
+                                <span class="item-code" style="color:#047857; background:#d1fae5; border-color:#6ee7b7;">16677.-1.269.3</span>
+                                <span class="ref-badge">Ref: 728377</span>
+                            </td>
+                            <td><span class="party-name">FREELANCER</span></td>
+                            <td class="amount">Rp 4.225.500,00</td>
+                            <td class="amount amount-tax">Rp 211.275,00</td>
+                            <td>
+                                <div><strong style="color:#b91c1c;">1483.-1.147</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">Rp 211.275,00</div>
+                                <span class="badge badge-danger">BATAL</span>
+                            </td>
+                            <td>
+                                <div><strong style="color:#047857;">1483.-1.149</strong></div>
+                                <div style="font-size:11px; color:var(--slate-500);">Rp 211.275,00</div>
+                                <span class="badge badge-success">AKTIF (REVISI SAH)</span>
+                            </td>
+                            <td style="text-align: center;">
+                                <span class="badge badge-success">Sah di Setoran 2</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: 4 ITEM TAMBAHAN DI SETORAN 2 -->
+        <div id="tab-new" class="tab-content" style="display: none;">
+            <div style="padding: 20px 24px; background:#ecfdf5; border-bottom: 1px solid #a7f3d0;">
+                <strong style="color:#065f46;">4 Item Tambahan Baru di Penyetoran Ke-2:</strong>
+                <p style="font-size:13px; color:#047857; margin-top:4px;">
+                    Item-item berikut adalah tagihan PPh 21 baru yang baru disertakan pada saat penerbitan Penyetoran Ke-2 (No. 1483.-1.149). 
+                    Item ini <strong>TIDAK PERNAH ADA di Penyetoran Ke-1</strong>.
+                </p>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px; text-align: center;">#</th>
+                            <th>Nomor Sumber Transaksi</th>
+                            <th>Pihak / Wajib Pajak</th>
+                            <th style="text-align: right;">Dasar Pajak (DPP)</th>
+                            <th style="text-align: right;">PPh 21 Tagihan</th>
+                            <th>Nomor Penyetoran</th>
+                            <th>Status Transaksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                <tr>
+                            <td style="text-align: center; color:var(--slate-400);">1</td>
+                            <td>
+                                <span class="item-code">16677.-1.455.2</span>
+                                <span class="ref-badge">Ref: 727781</span>
+                            </td>
+                            <td><span class="party-name">FREELANCER</span></td>
+                            <td class="amount">Rp 21.972.600,00</td>
+                            <td class="amount amount-tax">Rp 1.098.630,00</td>
+                            <td>
+                                <strong style="color:#047857;">1483.-1.149</strong>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 16:05:28</div>
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Item Baru (Aktif)</span>
+                            </td>
+                        </tr>
+                                                <tr>
+                            <td style="text-align: center; color:var(--slate-400);">2</td>
+                            <td>
+                                <span class="item-code">16677.-1.259.2</span>
+                                <span class="ref-badge">Ref: 728387</span>
+                            </td>
+                            <td><span class="party-name">FREELANCER</span></td>
+                            <td class="amount">Rp 9.296.100,00</td>
+                            <td class="amount amount-tax">Rp 464.805,00</td>
+                            <td>
+                                <strong style="color:#047857;">1483.-1.149</strong>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 16:05:28</div>
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Item Baru (Aktif)</span>
+                            </td>
+                        </tr>
+                                                <tr>
+                            <td style="text-align: center; color:var(--slate-400);">3</td>
+                            <td>
+                                <span class="item-code">16677.-1.332.17</span>
+                                <span class="ref-badge">Ref: 727939</span>
+                            </td>
+                            <td><span class="party-name">FREELANCER</span></td>
+                            <td class="amount">Rp 16.902.000,00</td>
+                            <td class="amount amount-tax">Rp 845.100,00</td>
+                            <td>
+                                <strong style="color:#047857;">1483.-1.149</strong>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 16:05:28</div>
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Item Baru (Aktif)</span>
+                            </td>
+                        </tr>
+                                                <tr>
+                            <td style="text-align: center; color:var(--slate-400);">4</td>
+                            <td>
+                                <span class="item-code">16677.-1.17.3</span>
+                                <span class="ref-badge">Ref: 728077</span>
+                            </td>
+                            <td><span class="party-name">FREELANCER</span></td>
+                            <td class="amount">Rp 16.902.000,00</td>
+                            <td class="amount amount-tax">Rp 845.100,00</td>
+                            <td>
+                                <strong style="color:#047857;">1483.-1.149</strong>
+                                <div style="font-size:11px; color:var(--slate-500);">17/03/2026 16:05:28</div>
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Item Baru (Aktif)</span>
+                            </td>
+                        </tr>
+                                            </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">TOTAL 4 ITEM BARU:</td>
+                            <td class="amount" style="font-weight: 700;">Rp 65.072.700,00</td>
+                            <td class="amount amount-tax" style="font-size: 14px;">Rp 3.253.635,00</td>
+                            <td colspan="2" style="color:#047857; font-weight:700;">Hanya Masuk di Penyetoran Ke-2</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytical Details Card -->
+    <div class="info-card">
+        <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Penjelasan Teknis Penyebab Munculnya Tampilan Ganda pada Menu History
+        </h3>
+        <ol>
+            <li>
+                <strong>Fungsi Halaman <code>viewHistory/1483</code> Menampilkan Seluruh Riwayat Log:</strong><br>
+                Pada sistem CodeIgniter Everest, controller <code>History::viewHistory</code> mengambil seluruh data transaksi pembayaran tanpa memfilter <code>trash_4 = 0</code>. Tujuannya adalah agar riwayat audit (pembatalan/revisi) tetap dapat dilacak oleh auditor.
+            </li>
+            <li>
+                <strong>Pembeda Visual di Antarmuka Asli:</strong><br>
+                Transaksi yang dibatalkan seperti <code>1483.-1.147</code> sebenarnya ditampilkan dengan penanda pembatalan (warna merah / baris tercoret) di antarmuka sistem. Namun, karena kolom <em>Items</em> menampilkan daftar nomor transaksi sumber yang sama, sekilas terlihat seperti ada dua kali penyetoran.
+            </li>
+            <li>
+                <strong>Kronologi Pembuatan Dokumen oleh Petugas:</strong><br>
+                Pada tanggal 09/03/2026, petugas <strong>indah</strong> membuat penyetoran <code>1483.-1.147</code> senilai Rp 1.351.423. Pada tanggal 17/03/2026 pukul 15:55, petugas menyadari ada kekurangan data atau revisi nomor referensi (terdapat 4 tagihan baru yang belum dimasukkan dan 1 item revisi nomor), sehingga dokumen pertama <strong>dibatalkan</strong>. Lalu pada pukul 16:05 (9 menit kemudian), dokumen baru <code>1483.-1.149</code> dibuat dengan total nilai Rp 4.605.058 yang mencakup 17 item lama + 1 revisi + 4 tagihan baru.
+            </li>
+            <li>
+                <strong>Pengecekan Transaksi Lain (September 2026):</strong><br>
+                Transaksi tanggal 04 September 2026 (nomor <code>1483.-1.169</code>, <code>1483.-1.171</code>, <code>1483.-1.172</code>, dan <code>1483.-1.174</code>) telah dicek secara mendalam dan terkonfirmasi <strong>100% bersih, tanpa duplikasi item antar transaksi aktif</strong>.
+            </li>
+        </ol>
+    </div>
+
+</div>
+
+<script>
+function switchTab(tabKey, btn) {
+    document.querySelectorAll('.tab-content').forEach(function(el) {
+        el.style.display = 'none';
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(el) {
+        el.classList.remove('active');
+    });
+    document.getElementById('tab-' + tabKey).style.display = 'block';
+    btn.classList.add('active');
+}
+
+function filterTable() {
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toLowerCase();
+    var rows = document.querySelectorAll("#dupTable tbody tr");
+
+    rows.forEach(function(row) {
+        var text = row.textContent.toLowerCase();
+        if (text.indexOf(filter) > -1) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
